@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import { store } from "./components/redux/store"
+import { Layout } from "./components/layout/Layout";
+import { Rutas } from "./components/router/Rutas";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheckSquare, faCoffee, faMapMarkerAlt, faUsers, faStar, faExclamationCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 function App() {
+  // Carga los iconos de FontAwesome
+  library.add( faCheckSquare, faCoffee, faMapMarkerAlt, faGithub, faUsers, faStar, faTwitter, faExclamationCircle, faSearch )
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Layout>
+          <Rutas />
+        </Layout>
+      </Router>
+    </Provider>
   );
 }
 
